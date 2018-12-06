@@ -162,12 +162,23 @@ function GM:EntityRemoved(ent)
 	end
 end
 
-concommand.Add("+menu_context", function ()
-	RunConsoleCommand("ph_lockrotation")
+concommand.Add("+menu_context", function (ply)
+	net.Start("open_taunt_menu")
+	net.Send(ply)
 end)
 
 concommand.Add("-menu_context", function ()
 end)
+
+-- Player pressed a key
+function PlayerPressedKey(pl, key)
+	if pl && pl:IsValid() && pl:Alive() && pl:Team() == 2 then
+		if ( key == IN_RELOAD ) then
+			RunConsoleCommand("ph_lockrotation")
+		end
+	end
+end
+hook.Add("KeyPress", "PlayerPressedKey", PlayerPressedKey)
 
 net.Receive("player_model_sex", function ()
 	local sex = net.ReadString()
