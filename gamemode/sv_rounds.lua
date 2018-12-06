@@ -141,7 +141,7 @@ function GM:StartRound()
 	end
 
 	self.RoundSettings = {}
-	self.RoundSettings.RoundTime = math.Round((c * 0.5 / hunters + 60 * 4)  * math.sqrt(props / hunters))
+	self.RoundSettings.RoundTime = 60 * 5 -- math.Round((c * 0.5 / hunters + 60 * 4)  * math.sqrt(props / hunters))
 	self.RoundSettings.PropsCamDistance = self.PropsCamDistance:GetFloat()
 	print("Round time is " .. (self.RoundSettings.RoundTime / 60) .. " (" .. c .. " props)")
 
