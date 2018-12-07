@@ -53,7 +53,7 @@ function GM:PlayerSpawn( ply )
 	player_manager.RunClass( ply, "Spawn" )
 
 	hook.Call( "PlayerLoadout", GAMEMODE, ply )
-	hook.Call( "PlayerSetModel", GAMEMODE, ply )
+	--hook.Call( "PlayerSetModel", GAMEMODE, ply )
 
 	ply:UnDisguise()
 	ply:CalculateSpeed()
@@ -64,16 +64,16 @@ function GM:PlayerSpawn( ply )
 	-- ply:SetCustomCollisionCheck(true)
 	GAMEMODE:PlayerSetNewHull(ply)
 
-	self:PlayerSetupHands(ply)
+	--[[self:PlayerSetupHands(ply)
 
 	local col = team.GetColor(ply:Team())
  	local vec = Vector(col.r / 255,col.g / 255,col.b / 255)
- 	ply:SetPlayerColor(vec)
+ 	ply:SetPlayerColor(vec) ]]
 
  	ply.LastSpawnTime = CurTime()
 end
 
-function GM:PlayerSetupHands(ply)
+--[[ function GM:PlayerSetupHands(ply)
 	local oldhands = ply:GetHands()
 	if ( IsValid( oldhands ) ) then oldhands:Remove() end
 
@@ -100,7 +100,7 @@ function GM:PlayerSetupHands(ply)
 
 		hands:Spawn()
  	end
-end
+end ]]
 
 function PlayerMeta:CalculateSpeed()
 	// set the defaults
