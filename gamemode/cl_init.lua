@@ -167,12 +167,19 @@ concommand.Add("+menu_context", function ()
 	RunConsoleCommand("ph_menu_taunt")
 end)
 
-concommand.Add("+reload", function()
-	RunConsoleCommand("ph_lockrotation")
-end)
-
 concommand.Add("-menu_context", function ()
 end)
+
+-- Player pressed a key
+function PlayerPressedKey(pl, key)
+	if not IsFirstTimePredicted() then return end
+	if pl && pl:IsValid() && pl:Alive() && pl:Team() == 3 then
+		if ( key == IN_RELOAD ) then
+			RunConsoleCommand("ph_lockrotation")
+		end
+	end
+end
+hook.Add("KeyPress", "PlayerPressedKey", PlayerPressedKey)
 
 net.Receive("player_model_sex", function ()
 	local sex = net.ReadString()
