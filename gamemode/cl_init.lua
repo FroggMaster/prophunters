@@ -163,9 +163,8 @@ function GM:EntityRemoved(ent)
 	end
 end
 
-concommand.Add("+menu_context", function (ply)
-	net.Start("open_taunt_menu")
-	net.Send(ply)
+concommand.Add("+menu_context", function ()
+	RunConsoleCommand("ph_menu_taunt")
 end)
 
 concommand.Add("-menu_context", function ()
