@@ -51,9 +51,10 @@ function GM:PlayerSpawn( ply )
 
 	player_manager.OnPlayerSpawn( ply )
 	player_manager.RunClass( ply, "Spawn" )
+	player_manager.RunClass( ply, "SetModel" )
 
 	hook.Call( "PlayerLoadout", GAMEMODE, ply )
-	--hook.Call( "PlayerSetModel", GAMEMODE, ply )
+	hook.Call( "PlayerSetModel", GAMEMODE, ply )
 
 	ply:UnDisguise()
 	ply:CalculateSpeed()
@@ -64,16 +65,16 @@ function GM:PlayerSpawn( ply )
 	-- ply:SetCustomCollisionCheck(true)
 	GAMEMODE:PlayerSetNewHull(ply)
 
-	--[[self:PlayerSetupHands(ply)
+	self:PlayerSetupHands(ply)
 
-	local col = team.GetColor(ply:Team())
+	--[[local col = team.GetColor(ply:Team())
  	local vec = Vector(col.r / 255,col.g / 255,col.b / 255)
  	ply:SetPlayerColor(vec) ]]
 
  	ply.LastSpawnTime = CurTime()
 end
 
---[[ function GM:PlayerSetupHands(ply)
+function GM:PlayerSetupHands(ply)
 	local oldhands = ply:GetHands()
 	if ( IsValid( oldhands ) ) then oldhands:Remove() end
 
@@ -100,7 +101,7 @@ end
 
 		hands:Spawn()
  	end
-end ]]
+end
 
 function PlayerMeta:CalculateSpeed()
 	// set the defaults
@@ -159,53 +160,6 @@ function GM:PlayerLoadout(ply)
 			ply:GiveAmmo(amo, "SMG1_Grenade")
 		end
 	end
-end
-
-
-local playerModels = {}
-local function addModel(model, sex)
-	local t = {}
-	t.model = model
-	t.sex = sex
-	table.insert(playerModels, t)
-end
-
-addModel("male03", "male")
-addModel("male04", "male")
-addModel("male05", "male")
-addModel("male07", "male")
-addModel("male06", "male")
-addModel("male09", "male")
-addModel("male01", "male")
-addModel("male02", "male")
-addModel("male08", "male")
-addModel("female06", "female")
-addModel("female01", "female")
-addModel("female03", "female")
-addModel("female05", "female")
-addModel("female02", "female")
-addModel("female04", "female")
-addModel("refugee01", "male")
-addModel("refugee02", "male")
-addModel("refugee03", "male")
-addModel("refugee04", "male")
-
-
-function GM:PlayerSetModel( ply )
-
-	local cl_playermodel = ply:GetInfo( "cl_playermodel" )
-
-	local playerModel = table.Random(playerModels)
-	cl_playermodel = playerModel.model
-
-	local modelname = player_manager.TranslatePlayerModel( cl_playermodel )
-	util.PrecacheModel( modelname )
-	ply:SetModel( modelname )
-	ply.ModelSex = playerModel.sex
-
-	net.Start("player_model_sex")
-	net.WriteString(playerModel.sex)
-	net.Send(ply)
 end
 
 function GM:ScalePlayerDamage( ply, hitgroup, dmginfo )
