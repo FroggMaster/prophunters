@@ -1,19 +1,39 @@
 --Taunt automatically every 30s
 local intervals = 30
-local timeLeft = intervals
 
 timer.Create( "timeLeft", 1, 0, function()
 	if IsValid(LocalPlayer()) && LocalPlayer():Team() == 3 then
-		timeLeft = timeLeft - 1
+		local ply = LocalPlayer()
+		local timeLeft = getTimeleft(ply) - 1
+		setTimeleft(ply, timeLeft )
 		if (timeLeft <= 0) then
 			RunConsoleCommand("ph_taunt_random")
-			timeLeft = intervals
+			setTimeleft(ply, intervals)
 		end
 	end
 end)
 
+hook.Add("TauntPlayed", "TauntPlayed", function(ply)
+	print("hook called")
+	setTimeleft(ply, intervals)
+end)
+
+function getTimeleft(ply)
+	if not ply.timeLeft then 
+		ply.timeLeft = intervals
+		setTimeleft(ply, intervals)
+	end
+	return ply.timeLeft
+end
+
+function setTimeleft(ply, nb)
+	ply.timeLeft = nb
+end
+
 function GM:DrawAutoTaunt()
-	if LocalPlayer():Team() == 3 then
+	local ply = LocalPlayer()
+	if ply:Team() == 3 then
+		local timeLeft = getTimeleft(ply)
 		local percentage = timeLeft / intervals
 
 		local txt = "Auto taunting in " .. timeLeft .. "s"

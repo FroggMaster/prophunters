@@ -18,6 +18,8 @@ concommand.Add("ph_taunt", function (ply, com, args, full)
 		return
 	end
 
+	hook.Call("TauntPlayed", nil, ply)
+
 	local t
 	for k, v in pairs(AllowedTauntSounds[snd]) do
 		if v.sex && v.sex != ply.ModelSex then
@@ -55,6 +57,8 @@ concommand.Add("ph_taunt_random", function (ply, com, args, full)
 	if ply.Taunting && ply.Taunting > CurTime() then
 		return
 	end
+
+	hook.Call("TauntPlayed", nil, ply)
 
 	local potential = {}
 	for k, v in pairs(Taunts) do
