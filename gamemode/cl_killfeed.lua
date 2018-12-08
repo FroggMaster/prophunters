@@ -81,7 +81,7 @@ function GM:DrawKillFeed()
 			break
 		end
 		local t = GAMEMODE.KillFeed[k]
-		if t.time + 30 < CurTime() then
+		if t.time + 10 < CurTime() then
 			table.remove(self.KillFeed, k)
 		else
 			surface.SetFont("RobotoHUD-15")

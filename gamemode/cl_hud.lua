@@ -47,7 +47,8 @@ function GM:HUDPaint()
 	end
 	-- self:DrawMoney()
 	self:DrawGameHUD()
-	-- DebugInfo(1, tostring(LocalPlayer():GetVelocity():Length()))
+	--DebugInfo(1, tostring(LocalPlayer():GetVelocity():Length()))
+	self:DrawAutoTaunt()
 
 	self:DrawRoundTimer()
 	self:DrawKillFeed()
