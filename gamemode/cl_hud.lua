@@ -56,8 +56,9 @@ end
 
 local helpKeysProps = {
 	{"attack", "Disguise as prop"},
-	{"reload", "Lock prop rotation"},
-	{"menu_context", "Taunt"}
+	{"menu_context", "Lock prop rotation"},
+	{"reload", "Random Taunt"},
+	{"gm_showspare1", "Taunt"}
 }
 
 local function keyName(str)

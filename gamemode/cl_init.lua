@@ -13,12 +13,12 @@ include("cl_killfeed.lua")
 include("cl_voicepanels.lua")
 include("cl_helpscreen.lua")
 include("cl_disguise.lua")
+include("cl_autotaunt.lua")
 include("cl_taunt.lua")
 include("cl_endroundboard.lua")
 include("cl_wraptext.lua")
 include("cl_mapvote.lua")
 include("cl_bannedmodels.lua")
-include("cl_autotaunt.lua")
 
 function GM:Initialize() 
 end
@@ -164,7 +164,7 @@ function GM:EntityRemoved(ent)
 end
 
 concommand.Add("+menu_context", function ()
-	RunConsoleCommand("ph_menu_taunt")
+	RunConsoleCommand("ph_lockrotation")
 end)
 
 concommand.Add("-menu_context", function ()
@@ -175,7 +175,7 @@ function PlayerPressedKey(pl, key)
 	if not IsFirstTimePredicted() then return end
 	if pl && pl:IsValid() && pl:Alive() && pl:Team() == 3 then
 		if ( key == IN_RELOAD ) then
-			RunConsoleCommand("ph_lockrotation")
+			RunConsoleCommand("ph_taunt_random")
 		end
 	end
 end

@@ -1,5 +1,5 @@
---Taunt automatically every 30s
-local intervals = 30
+--Taunt automatically every 90s
+local intervals = 90
 
 timer.Create( "timeLeft", 1, 0, function()
 	if IsValid(LocalPlayer()) && LocalPlayer():Team() == 3 then

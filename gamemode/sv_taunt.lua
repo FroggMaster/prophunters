@@ -18,7 +18,7 @@ concommand.Add("ph_taunt", function (ply, com, args, full)
 		return
 	end
 
-	hook.Call("TauntPlayed", nil, ply)
+	hook.Run("TauntPlayed", ply)
 
 	local t
 	for k, v in pairs(AllowedTauntSounds[snd]) do
@@ -58,7 +58,7 @@ concommand.Add("ph_taunt_random", function (ply, com, args, full)
 		return
 	end
 
-	hook.Call("TauntPlayed", nil, ply)
+	hook.Run("TauntPlayed", ply)
 
 	local potential = {}
 	for k, v in pairs(Taunts) do
