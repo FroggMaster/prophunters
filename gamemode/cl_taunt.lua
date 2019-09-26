@@ -43,6 +43,8 @@ local function fillList(mlist, taunts, cat)
 			draw.ShadowText(math.Round(t.soundDuration * 10) / 10 .. "s", "RobotoHUD-L10", w, h / 2, col, 2, 1)
 		end
 		function but:DoClick()
+			DebugInfo(6, "Do Click 2")
+
 			RunConsoleCommand("ph_taunt", t.sound[math.random(#t.sound)])
 			menu:Close()
 		end
@@ -162,6 +164,8 @@ local function openTauntMenu()
 		draw.ShadowText("Random", "RobotoHUD-15", w / 2, h / 2, colt, 1, 1)
 	end
 	function but:DoClick()
+		DebugInfo(6, "Do Click 1")
+
 		RunConsoleCommand("ph_taunt_random")
 		menu:Close()
 	end

@@ -5,6 +5,8 @@ timer.Create( "timeLeft", 1, 0, function()
 	if IsValid(LocalPlayer()) && LocalPlayer():Team() == 3 then
 		local ply = LocalPlayer()
 		local timeLeft = getTimeleft(ply) - 1
+		DebugInfo(3, tostring("TIME LEFT (Counter) " .. getTimeleft(ply)))
+
 		setTimeleft(ply, timeLeft )
 		if (timeLeft <= 0) then
 			RunConsoleCommand("ph_taunt_random")
@@ -14,7 +16,7 @@ timer.Create( "timeLeft", 1, 0, function()
 end)
 
 hook.Add("TauntPlayed", "TauntPlayed", function(ply)
-	print("hook called")
+	DebugInfo(3, tostring("TIME LEFT (PLAYED) " .. getTimeleft(ply)))
 	setTimeleft(ply, intervals)
 end)
 
@@ -35,6 +37,8 @@ function GM:DrawAutoTaunt()
 	if ply:Team() == 3 then
 		local timeLeft = getTimeleft(ply)
 		local percentage = timeLeft / intervals
+
+		DebugInfo(1, tostring("TIME LEFT (DRAW) " .. timeLeft))
 
 		local txt = "Auto taunting in " .. timeLeft .. "s"
 

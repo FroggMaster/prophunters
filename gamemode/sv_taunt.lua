@@ -3,22 +3,31 @@ include("sh_taunt.lua")
 util.AddNetworkString("open_taunt_menu")
 
 concommand.Add("ph_taunt", function (ply, com, args, full)
+	DebugInfo(4, "TAUNT PLAYED 1")
+	ServerLog( "TAUNT PLAYED 1" ) 
 	if !IsValid(ply) then
 		return
 	end
 
 	if !ply:Alive() then return end
+	DebugInfo(4, "TAUNT PLAYED 2")
 
 	if ply.Taunting && ply.Taunting > CurTime() then
 		return
 	end
+
+	DebugInfo(4, "TAUNT PLAYED 3")
 
 	local snd = args[1] or ""
 	if !AllowedTauntSounds[snd] then
 		return
 	end
 
+	DebugInfo(4, "TAUNT PLAYED 4")
+
 	hook.Run("TauntPlayed", ply)
+
+	DebugInfo(4,"TAUNT PLAYED 5")
 
 	local t
 	for k, v in pairs(AllowedTauntSounds[snd]) do
@@ -42,12 +51,17 @@ concommand.Add("ph_taunt", function (ply, com, args, full)
 		duration = t.soundDurationOverride or 1
 	end
 
+	DebugInfo(4, "TAUNT PLAYED 6")
+
+
 	ply:EmitSound(snd)
 	ply.Taunting = CurTime() + duration + 0.1
 	ply.TauntAmount = (ply.TauntAmount or 0) + 1
 end)
 
 concommand.Add("ph_taunt_random", function (ply, com, args, full)
+	ServerLog( "RANDOM TAUNT PLAYED 1" ) 
+	DebugInfo(5, "RANDOM TAUNT PLAYED 1")
 	if !IsValid(ply) then
 		return
 	end
