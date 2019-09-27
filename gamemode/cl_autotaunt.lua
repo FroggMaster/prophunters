@@ -8,6 +8,7 @@ timer.Create( "timeLeft", 1, 0, function()
 		setTimeleft(ply, timeLeft )
 		if (timeLeft <= 0) then
 			RunConsoleCommand("ph_taunt_random")
+			intervals = math.floor((intervals/2)+(intervals/4)+0.5)
 			setTimeleft(ply, intervals)
 		end
 	end
