@@ -20,7 +20,7 @@ end
 
 
 local muted = Material("icon32/muted.png", "noclamp")
-local skull = Material("melonbomber/skull.png", "noclamp")
+local skull = Material("skull.png", "noclamp")
 
 local function addPlayerItem(self, mlist, ply, pteam)
 
@@ -148,7 +148,7 @@ local function makeTeamList(parent, pteam)
 	but:Dock(RIGHT)
 	but:SetText("")
 	surface.SetFont("RobotoHUD-20")
-	local tw, th = surface.GetTextSize("Join team")
+	local tw, th = surface.GetTextSize("Join Team")
 	but:SetWide(tw + 6)
 	function but:DoClick()
 		RunConsoleCommand("car_jointeam", pteam)
@@ -173,7 +173,7 @@ local function makeTeamList(parent, pteam)
 			col.g = col.g * 1.2
 			col.b = col.b * 1.2
 		end
-		draw.ShadowText("Join team", "RobotoHUD-20", 2, h / 2 - th / 2, col, 0)
+		draw.ShadowText("Join Team", "RobotoHUD-20", 2, h / 2 - th / 2, col, 0)
 	end
 
 	mlist = vgui.Create("DScrollPanel", pnl)
@@ -249,7 +249,7 @@ function GM:ScoreboardShow()
 			local tw,th = surface.GetTextSize(t)
 			draw.ShadowText(t, "RobotoHUD-25", 4, 0, Color(199, 49, 29), 0)
 
-			draw.ShadowText("by Mechanical Mind, version " .. tostring(GAMEMODE.Version or "error"), "RobotoHUD-L15", 4 + tw + 24, h  * 0.9, Color(220, 220, 220), 0, 4)
+			draw.ShadowText("by Frog, Version " .. tostring(GAMEMODE.Version or "error"), "RobotoHUD-L15", 4 + tw + 24, h  * 0.9, Color(220, 220, 220), 0, 4)
 		end
 
 		function menu.Credits:PerformLayout()

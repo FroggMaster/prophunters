@@ -1,6 +1,5 @@
 local PlayerMeta = FindMetaTable("Player")
 local EntityMeta = FindMetaTable("Entity")
-
 local allowClasses = {"prop_physics", "prop_physics_multiplayer"}
 
 function PlayerMeta:CanDisguiseAsProp(ent)

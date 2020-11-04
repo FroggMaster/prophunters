@@ -1,8 +1,100 @@
 "Gamemode"
 {
-	"base"		"base"
-	"title"		"Prophunters"
-	"maps"		"^ph_"
-	"menusystem"	"1"
-	"version" 	"1.4"
+	"base"			"base"
+	"title"			"Prop Hunter"
+	"maps"			"^ph_"
+	"menusystem"		"1"
+	"version" 		"1.5"
+
+	"settings"
+	{
+		1
+		{
+			"name"		"ph_dead_canroam"
+			"text"		"Dead - No Clip"
+			"help"		"Allows dead players to fly through the map."
+			"type"		"CheckBox"
+			"default"	"0"
+		}
+		2
+		{
+			"name"		"ph_props_onwinstayprops"
+			"text"		"Winners Stay As Props"
+			"help"		"If the props win, they stay on the props team."
+			"type"		"CheckBox"
+			"default"	"0"
+		}
+		3
+		{
+			"name"		"ph_voice_hearotherteam"
+			"text"		"Opposing Team Voice Chat"
+			"help"		"Enable/Disable hearing the opposing team."
+			"type"		"CheckBox"
+			"default"	"0"
+		}
+		4
+		{
+			"name"		"ph_voice_heardead"
+			"text"		"Spectator Voice Chat"
+			"help"		"Enable/Disable spectator voice chat."
+			"type"		"CheckBox"
+			"default"	"1"
+		}
+		5
+		{
+			"name"		"ph_roundlimit"
+			"text"		"Rounds"
+			"help"		"The number of rounds before a map vote will trigger."
+			"type"		"Numeric"
+			"default"	"10"
+		}
+		6
+		{
+			"name"		"ph_mapstartwait"
+			"text"		"Seconds before map starts"
+			"help"		"The number of seconds to wait before starting a round."
+			"type"		"Numeric"
+			"default"	"30"
+		}
+		7
+		{
+			"name"		"ph_hunter_dmgpenalty"
+			"text"		"Hunter damage penalty"
+			"help"		"The amount of damage a hunter should take for shooting an incorrect prop."
+			"type"		"Numeric"
+			"default"	"3"
+		}
+		8
+		{
+			"name"		"ph_hunter_smggrenades"
+			"text"		"Hunter SMG Grenades"
+			"help"		"The amount of SMG grenades hunters should spawn with."
+			"type"		"Numeric"
+			"default"	"1"
+		}
+		9
+		{
+			"name"		"ph_props_small_size"
+			"text"		"Prop Speed Penalty"
+			"help"		"The starting prop size that a speed penalty applies. (0 to disable)"
+			"type"		"Numeric"
+			"default"	"200"
+		}
+		10
+		{
+			"name"		"ph_props_jumppower"
+			"text"		"Prop Jump Hieght"
+			"help"		"Jump height bonus for when props are disguised"
+			"type"		"Numeric"
+			"default"	"1.5"
+		}
+		11
+		{
+			"name"		"ph_props_camdistance"
+			"text"		"Prop Camera Distance"
+			"help"		"The camera distance for props."
+			"type"		"Numeric"
+			"default"	"10"
+		}
+	}
 }

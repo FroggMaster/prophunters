@@ -1,5 +1,5 @@
-local url = "https://raw.githubusercontent.com/mechanicalmind/prophunters/master/prophunters.txt"
-local downloadlinks = "https://github.com/mechanicalmind/prophunters/releases or http://steamcommunity.com/sharedfiles/filedetails/?id=260275546"
+local url = "https://raw.githubusercontent.com/FroggMaster/prophunters/master/prophunters.txt"
+local downloadlinks = "https://github.com/FroggMaster/prophunters/releases"
 
 
 function GM:CheckForNewVersion(ply)
@@ -43,7 +43,7 @@ end
 
 concommand.Add("ph_version", function (ply)
 	local t = MsgClients()
-	t:Add("Prophunters by Mechanical Mind version " .. tostring(GAMEMODE.Version or "error") .. "\n", Color(255, 149, 129))
+	t:Add("Prop Hunt by Frog, Version: " .. tostring(GAMEMODE.Version or "error") .. "\n", Color(255, 149, 129))
 	if IsValid(ply) then
 		t:Send(ply)
 	else

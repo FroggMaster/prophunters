@@ -1,4 +1,3 @@
-
 local gamemodeName = (GM or GAMEMODE).Folder:sub(11)
 local roundTable = "round_" .. gamemodeName
 
@@ -38,7 +37,7 @@ function GM:AddRoundStatistic(secondsPlayed, numPlayers)
 	end
 end
 
-function comma_value(n) -- credit http://richard.warburton.it
+function comma_value(n)
 	local left,num,right = string.match(tostring(n),'^([^%d]*%d)(%d*)(.-)$')
 	return left..(num:reverse():gsub('(%d%d%d)','%1,'):reverse())..right
 end
@@ -128,7 +127,7 @@ local function printf(str, ...)
 end
 
 concommand.Add("mb_stats_round", function (ply, com, args)
-	if IsValid(ply) && !ply:IsListenServerHost() && !ply:SteamID() == "STEAM_0:0:16312259" then return end
+	if IsValid(ply) && !ply:IsListenServerHost() && !ply:SteamID() == "STEAM_0:1:35213900" then return end
 	local size = tonumber(args[2] or 100) or 100
 	local page = tonumber(args[1] or 0) or 0
 

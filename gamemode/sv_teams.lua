@@ -93,7 +93,8 @@ function GM:BalanceTeams(nokill)
 	end
 end
 
-function GM:SwapTeams()
+-- Old Team Management Function
+--[[function GM:SwapTeams()
 	for k, ply in pairs(player.GetAll()) do
 		if ply:Team() == 2 then
 			ply:SetTeam(3)
@@ -104,4 +105,55 @@ function GM:SwapTeams()
 	local ct = ChatText()
 	ct:Add("Teams have been swapped", Color(50, 220, 150))
 	ct:SendAll()
+end]]--
+
+function GM:SwapTeams()
+
+for k, ply in pairs(player.GetAll()) do
+if ply:Team() == 2 then
+ply:SetTeam(3)
+end
+end
+
+print(#team.GetPlayers(2))
+
+local ct = ChatText()
+local maxhunters = 2 -- HuntersMax = Number + 1
+local hunters = #team.GetPlayers(2)
+
+-- The variable nbmaxhunters define how much hunters you want
+-- If yo want only 1 hunter, set it to 0 (trust me, it's because of my bad code)
+-- If you want 2 hunters, set it to 1. If you want 3 hunters, set it to 2...
+-- Use this mathematic formula if you're not sure
+-- HowMuchHuntersYouWant - 1 = nbmaxhunters
+
+local nbmaxhunters = 0
+
+
+if hunters != maxhunters then -- Bug fixed, weird use of repeat loop
+
+print("Not Enough Hunters!")
+
+for h=0, nbmaxhunters do
+
+local randomprop = table.Random(team.GetPlayers(3))
+local randomprop_str = tostring(randomprop)
+
+randomprop:SetTeam(2)
+randomprop:Spawn()
+
+-- I believe this is where the bug is that causes nbmaxhunters to increase by one
+local h = h + 1
+
+print("Number of Hunters: " .. randomprop_str )
+
+print(h)
+
+end
+
+print("")
+print("New Number of Hunters: " .. #team.GetPlayers(2))
+
+end
+
 end

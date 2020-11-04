@@ -14,14 +14,14 @@ end
 
 
 addHelpText("Intro", 1, [[
-Prop Hunters is a gamemode based on the classic Prop Hunt. I've added better looks, more features and lots of fixes to gameplay.
-
+Prop Hunt - Hide and seek with a twist. 
 
 ==CONTROLS==
+F1 - Will display the help menu
 LEFT CLICK - Disguises as the prop you are looking at
 C - Locks your prop's rotation when disguised
-R - Random Taunt
-F3 - Taunt
+R - Random Taunt [Might Not Work]
+F3 - Taunt Menu
 
 ==OBJECTIVES==
 The aim of the hunters is to find and kill all the props.

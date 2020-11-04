@@ -137,7 +137,7 @@ function PlayerMeta:DisguiseLockRotation()
 
 	local ang = self:EyeAngles()
 	self:SetNWBool("disguiseRotationLock", true)
-	self:SetNWFloat("disguiseRotationLockYaw", ang.y)
+	self:SetNWFloat("disguiseRotationLockYaw", ang.y, ang.x, ang.z)
 	GAMEMODE:PlayerSetHull(self, hullx, hully, hullz, hullz)
 end
 

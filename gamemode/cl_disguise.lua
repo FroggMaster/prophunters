@@ -1,4 +1,5 @@
 include("sh_disguise.lua")
+include("shared.lua")
 
 local PlayerMeta = FindMetaTable("Player")
 
@@ -21,16 +22,23 @@ local function renderDis(self)
 					ang.p = 0
 					ang.r = 0
 					if ply:DisguiseRotationLocked() then
-						ang.y = ply:GetNWFloat("disguiseRotationLockYaw")
-					end
+						-- ang.y = ply:GetNWFloat("disguiseRotationLockYaw")
+						-- ang.x = ply:GetNWFloat("disguiseRotationLockYaw")
+						-- ang.z = ply:GetNWFloat("disguiseRotationLockYaw")
+						-- ply:Freeze(true)
+						ply:EnableMotion(false)
+					elseif !ply:DisguiseRotationLocked() then
+						-- ply:EnableMotion( true )
+					end 
 					local pos = ply:GetPos() + Vector(0, 0, -mins.z)
 					local center = (maxs + mins) / 2
 					center.z = 0
 					center:Rotate(ang)
-					ent:SetPos(pos - center)
-					ent:SetAngles(ang)
-					-- ent:SetupBones()
 					ent:SetSkin(ply:GetNWInt("disguiseSkin", 1))
+					ent:SetPos(pos - center)
+					ent:SetAngles(ply:GetAngles()) -- Allows Prop to Lay Down / But Rotation Lock Doesn't Work
+					-- ent:SetAngles(ang) -- Works with Rotation Lock			
+					-- ent:SetupBones()
 					-- ent:DrawShadow()
 					-- ent:DrawModel()
 				end

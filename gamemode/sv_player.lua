@@ -186,14 +186,22 @@ function PlayerMeta:CalculateSpeed()
 	self:SetJumpPower(settings.jumpPower or 1)
 end
 
+-- Starting Player Loadout
 function GM:PlayerLoadout(ply)
 	if ply:Team() == 2 then
 		ply:Give("weapon_crowbar")
+		ply:Give("weapon_pistol")
+		ply:Give("weapon_357")
 		ply:Give("weapon_smg1")
 		ply:Give("weapon_shotgun")
+		ply:Give("weapon_frag")
 
+
+		ply:GiveAmmo(5 * 10, "Pistol")
+		ply:GiveAmmo(1, "Grenade")
+		ply:GiveAmmo(5 * 10, "357")
 		ply:GiveAmmo(45 * 10, "SMG1")
-		ply:GiveAmmo(6 * 10, "buckshot")
+		ply:GiveAmmo(6 * 10, "Buckshot")
 		local amo = self.HunterGrenadeAmount:GetInt()
 		if amo > 0 then
 			ply:GiveAmmo(amo, "SMG1_Grenade")

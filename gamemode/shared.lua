@@ -1,9 +1,8 @@
-GM.Name 	= "Prophunters"
-GM.Author 	= "MechanicalMind"
-// Credits to waddlesworth for the logo and icon
+GM.Name 	= "Prop Hunt"
+GM.Author 	= "Frog"
 GM.Email 	= ""
-GM.Website 	= "http://codingconcoctions.com/"
-GM.Version 	= "1.4"
+GM.Website 	= ""
+GM.Version 	= "1.5"
 
 team.SetUp(1, "Spectators", Color(120, 120, 120))
 team.SetUp(2, "Hunters", Color(255, 150, 50))
@@ -36,6 +35,6 @@ function GM:PlayerSetHull(ply, hullx, hully, hullz, duckz)
 		net.WriteFloat(hullz)
 		net.WriteFloat(duckz)
 		net.Broadcast()
-		// TODO send on player spawn
+		-- TODO: Send on player spawn ?
 	end
 end

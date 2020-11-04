@@ -2,7 +2,7 @@ AddCSLuaFile("shared.lua")
 
 local rootFolder = (GM or GAMEMODE).Folder:sub(11) .. "/gamemode/"
 
-// add cs lua all the cl_ or sh_ files
+-- Add CS LUA to all the cl_ or sh_ files
 local files, dirs = file.Find(rootFolder .. "*", "LUA")
 for k, v in pairs(files) do
 	if v:sub(1,3) == "cl_" || v:sub(1,3) == "sh_" then
@@ -10,7 +10,7 @@ for k, v in pairs(files) do
 	end
 end
 
-
+-- Additional LUA Modules / Resources
 include("shared.lua")
 include("sv_ragdoll.lua")
 include("sv_chattext.lua")
@@ -30,31 +30,29 @@ include("sv_teams.lua")
 include("sv_taunt.lua")
 include("sv_mapvote.lua")
 include("sv_bannedmodels.lua")
-include("sv_version.lua")
-
+-- include("sv_version.lua") -- Disabled Version Check (Additionally commented out correspoding Line 64)
 
 util.AddNetworkString("clientIPE")
 util.AddNetworkString("mb_openhelpmenu")
 util.AddNetworkString("player_model_sex")
 
-resource.AddFile("materials/melonbomber/skull.png")
-resource.AddFile("materials/melonbomber/skull_license.txt")
+resource.AddFile("materials/skull.png")
 
-GM.VoiceHearTeam = CreateConVar("ph_voice_hearotherteam", 0, bit.bor(FCVAR_NOTIFY), "Can we hear the voices of opposing teams" )
-GM.VoiceHearDead = CreateConVar("ph_voice_heardead", 1, bit.bor(FCVAR_NOTIFY), "Can we hear the voices of dead players and spectators" )
-GM.RoundLimit = CreateConVar("ph_roundlimit", 10, bit.bor(FCVAR_NOTIFY), "Number of rounds before mapvote" )
-GM.StartWaitTime = CreateConVar("ph_mapstartwait", 30, bit.bor(FCVAR_NOTIFY), "Number of seconds to wait for players on map start before starting round" )
-GM.HunterDamagePenalty = CreateConVar("ph_hunter_dmgpenalty", 3, bit.bor(FCVAR_NOTIFY), "Amount of damage a hunter should take for shooting an incorrect prop" )
-GM.HunterGrenadeAmount = CreateConVar("ph_hunter_smggrenades", 1, bit.bor(FCVAR_NOTIFY), "Amount of SMG grenades hunters should spawn with" )
-GM.DeadSpectateRoam = CreateConVar("ph_dead_canroam", 0, bit.bor(FCVAR_NOTIFY), "Can dead players use the roam spectate mode" )
-GM.PropsWinStayProps = CreateConVar("ph_props_onwinstayprops", 0, bit.bor(FCVAR_NOTIFY), "If the props win, they stay on the props team" )
-GM.PropsSmallSize = CreateConVar("ph_props_small_size", 200, bit.bor(FCVAR_NOTIFY), "Size that speed penalty for small size starts to apply (0 to disable)" )
-GM.PropsJumpPower = CreateConVar("ph_props_jumppower", 1.2, bit.bor(FCVAR_NOTIFY), "Jump power bonus for when props are disguised" )
-GM.PropsCamDistance = CreateConVar("ph_props_camdistance", 1, bit.bor(FCVAR_NOTIFY), "The camera distance multiplier for props when disguised")
+-- Settings
+GM.VoiceHearTeam = CreateConVar("ph_voice_hearotherteam", 0, bit.bor(FCVAR_NOTIFY), "Are we able to hear the voices of the opposing teams? (0 Disabled / 1 Enabled)" )
+GM.VoiceHearDead = CreateConVar("ph_voice_heardead", 0, bit.bor(FCVAR_NOTIFY), "Are we able to hear the voices of dead players and spectators? (0 Disabled / 1 Enabled)" )
+GM.RoundLimit = CreateConVar("ph_roundlimit", 10, bit.bor(FCVAR_NOTIFY), "The number of rounds before mapvote." )
+GM.StartWaitTime = CreateConVar("ph_mapstartwait", 30, bit.bor(FCVAR_NOTIFY), "The number of seconds players wait on the map for the round to start." )
+GM.HunterDamagePenalty = CreateConVar("ph_hunter_dmgpenalty", 3, bit.bor(FCVAR_NOTIFY), "The amount of damage a hunter should take for shooting an incorrect prop." )
+GM.HunterGrenadeAmount = CreateConVar("ph_hunter_smggrenades", 1, bit.bor(FCVAR_NOTIFY), "The amount of SMG grenades hunters should spawn with" )
+GM.DeadSpectateRoam = CreateConVar("ph_dead_canroam", 0, bit.bor(FCVAR_NOTIFY), "Allow dead players to roam around (0 Disabled / 1 Enabled)" )
+GM.PropsWinStayProps = CreateConVar("ph_props_onwinstayprops", 0, bit.bor(FCVAR_NOTIFY), "If the props win, they stay on the props team." )
+GM.PropsSmallSize = CreateConVar("ph_props_small_size", 200, bit.bor(FCVAR_NOTIFY), "Speed for smaller props. (Default 200 / 0 Disabled)" )
+GM.PropsJumpPower = CreateConVar("ph_props_jumppower", 1.2, bit.bor(FCVAR_NOTIFY), "The jump height for player props." )
+GM.PropsCamDistance = CreateConVar("ph_props_camdistance", 10, bit.bor(FCVAR_NOTIFY), "The camera distance multiplier for player props.")
 
 function GM:Initialize()
 	self.RoundWaitForPlayers = CurTime()
-
 	self.DeathRagdolls = {}
 	self:SetupStatisticsTables()
 	self:LoadMapList()
@@ -62,7 +60,7 @@ function GM:Initialize()
 end
 
 function GM:InitPostEntity() 
-	self:CheckForNewVersion()
+	-- self:CheckForNewVersion() -- Disabled Version Check 
 	self:InitPostEntityAndMapCleanup()
 
 	RunConsoleCommand("mp_show_voice_icons", "0")
